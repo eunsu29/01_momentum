@@ -7,6 +7,7 @@ const HIDDEN_CLASSNAME = "hidden";
 function onLoginSubmit(event) {
     event.preventDefault(); // 새로고침 방지
     const username = loginInput.value;
+    localStorage.setItem("username", username); // localStorage에 저장, getItem으로 불러오기 가능
     loginForm.classList.add(HIDDEN_CLASSNAME);
     greeting.innerText = `Hello ${username}`; // `` 사용, String + 변수
     greeting.classList.remove(HIDDEN_CLASSNAME);
