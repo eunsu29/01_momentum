@@ -18,8 +18,9 @@ function paintGreeting(username) {
     greeting.innerText = `Hello ${username}`;
 }
 
-const savedUsername = localStorage.getItem(USERNAME_KEY);
+const savedUsername = localStorage.getItem(USERNAME_KEY); // localStorage에 저장된 username 불러오기
 
+// username 확인 후 form or greeting 표시
 if (savedUsername === null) {
     loginForm.classList.remove(HIDDEN_CLASSNAME);
     loginForm.addEventListener("submit", onLoginSubmit); // 정보를 담은채로 function 호출
