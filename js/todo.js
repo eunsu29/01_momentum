@@ -4,8 +4,10 @@ const toDoList = document.querySelector("#todo-list");
 
 const toDos = [];
 
+const TODOS_KEY = "todos";
+
 function saveToDos() {
-    localStorage.setItem("todos", JSON.stringify(toDos)); // String형태로 변환
+    localStorage.setItem(TODOS_KEY, JSON.stringify(toDos)); // String형태로 변환
 }
 
 function deleteToDo(event) {
@@ -38,3 +40,10 @@ function handleToDoSubmit(event) {
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
+
+const savedToDos = localStorage.getItem(TODOS_KEY);
+
+if (saveToDos !== null) {
+    const parsedToDos = JSON.parse(saveToDos);
+    saveToDos.forEach((item) => console.log("turn of", item)); // forEach array 안의 각각의 item들로 함수를 실행
+}
