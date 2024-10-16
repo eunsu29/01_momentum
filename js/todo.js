@@ -1,32 +1,40 @@
-const todoForm = document.querySelector("#todo-form");
-const todoInput = todoForm.querySelector("input");
-const todoList = document.querySelector("#todo-list");
+const toDoForm = document.querySelector("#todo-form");
+const toDoInput = toDoForm.querySelector("input");
+const toDoList = document.querySelector("#todo-list");
 
-function deleteTodo(event) {
+const toDos = [];
+
+function saveToDos() {
+    localStorage.setItem("todos", JSON.stringify(toDos)); // String형태로 변환
+}
+
+function deleteToDo(event) {
     const li = event.target.parentElement; // 클릭한 대상의 부모요소 확인가능
     li.remove(); // 삭제
 }
 
-function paintTodo(newTodo) {
+function paintToDo(newToDo) {
     const li = document.createElement("li");
 
     const span = document.createElement("span");
-    span.innerText = newTodo;
+    span.innerText = newToDo;
 
     const button = document.createElement("button");
     button.innerText = "❌";
-    button.addEventListener("click", deleteTodo);
+    button.addEventListener("click", deleteToDo);
 
     li.appendChild(span);
     li.appendChild(button);
-    todoList.appendChild(li);
+    toDoList.appendChild(li);
 }
 
-function handleTodoSubmit(event) {
+function handleToDoSubmit(event) {
     event.preventDefault();
-    const newTodo = todoInput.value;
-    todoInput.value = "";
-    paintTodo(newTodo);
+    const newToDo = toDoInput.value;
+    toDoInput.value = "";
+    toDos.push(newToDo);
+    paintToDo(newToDo);
+    saveToDos();
 }
 
-todoForm.addEventListener("submit", handleTodoSubmit);
+toDoForm.addEventListener("submit", handleToDoSubmit);
