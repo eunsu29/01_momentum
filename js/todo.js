@@ -2,9 +2,9 @@ const toDoForm = document.querySelector("#todo-form");
 const toDoInput = toDoForm.querySelector("input");
 const toDoList = document.querySelector("#todo-list");
 
-const toDos = [];
-
 const TODOS_KEY = "todos";
+
+let toDos = [];
 
 function saveToDos() {
     localStorage.setItem(TODOS_KEY, JSON.stringify(toDos)); // String형태로 변환
@@ -43,7 +43,8 @@ toDoForm.addEventListener("submit", handleToDoSubmit);
 
 const savedToDos = localStorage.getItem(TODOS_KEY);
 
-if (saveToDos !== null) {
-    const parsedToDos = JSON.parse(saveToDos); // string -> array로 변환
-    saveToDos.forEach((item) => console.log("turn of", item)); // forEach array 안의 각각의 item들로 함수를 실행
+if (savedToDos !== null) {
+    const parsedToDos = JSON.parse(savedToDos); // string -> array로 변환
+    toDos = parsedToDos; // 저장해놨던 array 가져오기
+    parsedToDos.forEach(paintToDo); // forEach array 안의 각각의 item들로 함수를 실행
 }
