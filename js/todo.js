@@ -10,14 +10,21 @@ function saveToDos() {
     localStorage.setItem(TODOS_KEY, JSON.stringify(toDos)); // String형태로 변환
 }
 
+function deleteFilter(toDo, li) {
+    return toDo.id !== parseInt(li.id);
+}
+
 function deleteToDo(event) {
     const li = event.target.parentElement; // 클릭한 대상의 부모요소 확인가능
+    toDos = toDos.filter((toDo) => deleteFilter(toDo, li)); // array.filter 조건값이 true일 경우 유지, false일 경우 삭제하여 array 재생성
+    // toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
     li.remove(); // 삭제
+    saveToDos();
 }
 
 function paintToDo(newToDo) {
     const li = document.createElement("li");
-    li.id = newToDo.id;
+    li.id = newToDo.id; // li에 id 부여
 
     const span = document.createElement("span");
     span.innerText = newToDo.text;
