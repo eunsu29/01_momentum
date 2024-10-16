@@ -44,6 +44,6 @@ toDoForm.addEventListener("submit", handleToDoSubmit);
 const savedToDos = localStorage.getItem(TODOS_KEY);
 
 if (saveToDos !== null) {
-    const parsedToDos = JSON.parse(saveToDos);
+    const parsedToDos = JSON.parse(saveToDos); // string -> array로 변환
     saveToDos.forEach((item) => console.log("turn of", item)); // forEach array 안의 각각의 item들로 함수를 실행
 }
